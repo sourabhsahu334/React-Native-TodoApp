@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect } from 'react';
 import Modal from "react-native-modal";
 import { set } from 'mongoose';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const Home = () => {
     const [todo, setTodo] = useState([]);
@@ -105,13 +106,13 @@ const Home = () => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ width: '90%', marginTop: 30, }}>
-                    {todo.length!==0 && todo.map((newto, index) => (<View  style={{flexDirection: 'row', justifyContent: 'space-between' }}key={index}>
+                    {todo.length!==0 && todo.map((newto, index) => (<ScrollView><View  style={{flexDirection: 'row', justifyContent: 'space-between' }}key={index}>
                         <Text style={{ marginTop: 5,color:"white" }} >{index + 1}..{newto.todo}</Text>
                        <View style={{flexDirection:"row"}}>{newto.status==="pending"?<TouchableOpacity onPress={()=>{setchangeindex(index); setConfirm(true)}}><Text>{<Icon2 name="pending-actions" size={25} color="yellow" />}</Text></TouchableOpacity>:
                        <TouchableOpacity ><Text>{<Icon1 name="checkcircle" size={25} color="green" />}</Text></TouchableOpacity>}
                         <TouchableOpacity onPress={()=>deteleTodo(index)}><Text>{<Icon name="delete" size={30} color="#900" />}</Text></TouchableOpacity>
                         </View>
-                       </View>))}</View>
+                       </View></ScrollView>))}</View>
             </View>
 
             <View>
